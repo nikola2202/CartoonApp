@@ -1,4 +1,7 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.data
+
+import com.example.cartoonapp.data.Location
+import com.example.cartoonapp.data.Origin
 
 data class GetCharacterByIdResponse(
     val created: String = "",

@@ -1,0 +1,35 @@
+cartoonAppService.getCharacterById(54).enqueue(object : Callback<GetCharacterByIdResponse> {
+            override fun onResponse(call: Call<GetCharacterByIdResponse>, response: Response<GetCharacterByIdResponse>) {
+                Log.i("MainActivity",response.toString())
+                if(!response.isSuccessful) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Unsuccessful network call!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return
+                }
+
+                val body = response.body()!!
+                nameTextView.text = body.name
+                aliveTextView.text = body.status
+                speciesTextView.text = body.species
+                originTextView.text = body.origin.name
+
+                if (body.gender.equals("male",true)) {
+                    genderImageView.setImageResource(R.drawable.male)
+                } else {
+                    genderImageView.setImageResource(R.drawable.female)
+                }
+
+                Picasso.get()
+                    .load(body.image)
+                    .into(headerImageView)
+
+            }
+
+            override fun onFailure(call: Call<GetCharacterByIdResponse>, t: Throwable) {
+                Log.i("MainActivity",t.message ?: "Null message")
+            }
+
+        })

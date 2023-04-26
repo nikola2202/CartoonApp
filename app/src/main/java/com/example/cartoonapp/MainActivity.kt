@@ -1,59 +1,64 @@
 package com.example.cartoonapp
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import androidx.lifecycle.ViewModelProvider
+import com.example.cartoonapp.data.GetCharacterByIdResponse
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
+
+    val viewModel: SharedViewModel by lazy {
+        ViewModelProvider(this).get(SharedViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.textView)
+        val nameTextView = findViewById<TextView>(R.id.nameTextView)
+        val headerImageView = findViewById<ImageView>(R.id.headerImageView)
+        val aliveTextView = findViewById<TextView>(R.id.aliveTextView)
+        val originTextView = findViewById<TextView>(R.id.originTextView)
+        val speciesTextView = findViewById<TextView>(R.id.speciesTextView)
+        val genderImageView = findViewById<ImageView>(R.id.genderImageView)
 
-        val moshi = Moshi.Builder()
-            .addLast(KotlinJsonAdapterFactory())
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-
-        val cartoonAppCompatActivity: Service = retrofit.create(Service::class.java)
-
-        cartoonAppCompatActivity.getCharacterById(54).enqueue(object : Callback<GetCharacterByIdResponse> {
-            override fun onResponse(call: Call<GetCharacterByIdResponse>, response: Response<GetCharacterByIdResponse>) {
-                Log.i("MainActivity",response.toString())
-                if(!response.isSuccessful) {
-                    Toast.makeText(this@MainActivity,"Unsuccessful network call!",Toast.LENGTH_SHORT)
-                    return
-                }
-
-                val body = response.body()!!
-                val name = body.name
-
-                textView.text = name
-
+        viewModel.refreshCharacter(54)
+        viewModel.characterIdLiveData.observe(this) {response ->
+            if (response==null) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Unsuccessful network call!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@observe
             }
 
-            override fun onFailure(call: Call<GetCharacterByIdResponse>, t: Throwable) {
-                Log.i("MainActivity",t.message ?: "Null message")
+            nameTextView.text = response.name
+            aliveTextView.text = response.status
+            speciesTextView.text = response.species
+            originTextView.text = response.origin.name
+
+            if (response.gender.equals("male",true)) {
+                genderImageView.setImageResource(R.drawable.male)
+            } else {
+                genderImageView.setImageResource(R.drawable.female)
             }
 
-        })
+            Picasso.get()
+                .load(response.image)
+                .into(headerImageView)
+
+        }
+
 
     }
 }

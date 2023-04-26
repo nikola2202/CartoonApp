@@ -1,14 +1,15 @@
 package com.example.cartoonapp
 
-import retrofit2.Call
+import com.example.cartoonapp.data.GetCharacterByIdResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface Service {
 
     @GET("character/{character-id}")
-    fun getCharacterById(
+    suspend fun getCharacterById(
         @Path("character-id") characterId: Int
-    ): Call<GetCharacterByIdResponse>
+    ): Response<GetCharacterByIdResponse>
 
 }
