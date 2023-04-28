@@ -1,4 +1,4 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.network
 
 import retrofit2.Response
 

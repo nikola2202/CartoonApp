@@ -1,4 +1,4 @@
-package com.example.cartoonapp.data
+package com.example.cartoonapp.network.data
 
 data class Origin(
     val name: String = "",

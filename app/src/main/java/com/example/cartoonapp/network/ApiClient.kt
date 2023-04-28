@@ -1,6 +1,6 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.network
 
-import com.example.cartoonapp.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.data.GetCharacterByIdResponse
 import retrofit2.Response
 
 class ApiClient(
@@ -13,7 +13,7 @@ class ApiClient(
 
     private inline fun<T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
-           SimpleResponse.success(apiCall.invoke())
+            SimpleResponse.success(apiCall.invoke())
         }catch (e:Exception) {
             SimpleResponse.failure(e)
         }

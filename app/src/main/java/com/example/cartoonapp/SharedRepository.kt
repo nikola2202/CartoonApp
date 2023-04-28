@@ -1,6 +1,7 @@
 package com.example.cartoonapp
 
-import com.example.cartoonapp.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.NetworkLayer
 
 class SharedRepository {
 

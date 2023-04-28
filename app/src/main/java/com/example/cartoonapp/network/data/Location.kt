@@ -1,4 +1,4 @@
-package com.example.cartoonapp.data
+package com.example.cartoonapp.network.data
 
 data class Location(
     val name: String = "",
