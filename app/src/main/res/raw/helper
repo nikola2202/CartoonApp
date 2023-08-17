@@ -33,3 +33,36 @@ cartoonAppService.getCharacterById(54).enqueue(object : Callback<GetCharacterByI
             }
 
         })
+
+
+         override fun loadInitial(
+                params: LoadInitialParams<Int>,
+                callback: LoadInitialCallback<Int, GetCharacterByIdResponse>
+            ) {
+                coroutineScope.launch {
+                    val page = repository.getCharactersPage(1)
+
+                    if (page == null) {
+                        callback.onResult(emptyList(),null,null)
+                        return@launch
+                    }
+                    callback.onResult(page.results,null,2)
+                }
+            }
+
+            override fun loadAfter(
+                params: LoadParams<Int>,
+                callback: LoadCallback<Int, GetCharacterByIdResponse>
+            ) {
+                coroutineScope.launch {
+                    val characterList = repository.getCharacterList(params.key)
+                    callback.onResult(characterList,params.key + 1)
+                }
+            }
+
+            override fun loadBefore(
+                params: LoadParams<Int>,
+                callback: LoadCallback<Int, GetCharacterByIdResponse>
+            ) {
+                //Nothing to do
+            }
