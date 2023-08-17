@@ -1,7 +1,4 @@
-package com.example.cartoonapp
-
-import android.icu.text.IDNA.Info
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+package com.example.cartoonapp.network.response
 
 data class GetCharactersPageResponse(
     val info: Info = Info(),

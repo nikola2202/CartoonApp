@@ -1,11 +1,12 @@
-package com.example.cartoonapp.epoxy
+package com.example.cartoonapp
 
 import com.airbnb.epoxy.EpoxyController
-import com.example.cartoonapp.R
 import com.example.cartoonapp.databinding.ModelCharacterDetailsDataPointBinding
 import com.example.cartoonapp.databinding.ModelCharacterDetailsHeaderBinding
 import com.example.cartoonapp.databinding.ModelHeaderDetailsImageBinding
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+import com.example.cartoonapp.epoxy.LoadingEpoxyModel
+import com.example.cartoonapp.epoxy.ViewBindingKotlinModel
+import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
 
 class CharacterDetailsEpoxyController: EpoxyController() {

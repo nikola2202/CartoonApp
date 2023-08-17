@@ -1,6 +1,7 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.characters
 
 import com.example.cartoonapp.network.NetworkLayer
+import com.example.cartoonapp.network.response.GetCharactersPageResponse
 
 class CharactersRepository {
 

@@ -1,14 +1,14 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.characters
 
 import androidx.paging.PageKeyedDataSource
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class CharactersDataSource(
     private val coroutineScope: CoroutineScope,
     private val repository: CharactersRepository
-    ): PageKeyedDataSource<Int,GetCharacterByIdResponse>() {
+    ): PageKeyedDataSource<Int, GetCharacterByIdResponse>() {
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -30,7 +30,7 @@ class CharactersDataSource(
         callback: LoadCallback<Int, GetCharacterByIdResponse>
     ) {
         coroutineScope.launch {
-            val page = repository.getCharacterPage(1)
+            val page = repository.getCharacterPage(params.key)
 
             if (page == null) {
                 callback.onResult(emptyList(),null)

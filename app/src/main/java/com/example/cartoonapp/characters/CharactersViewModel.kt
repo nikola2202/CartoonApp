@@ -5,9 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.cartoonapp.CharactersRepository
 import com.example.cartoonapp.Constants
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 
 class CharactersViewModel: ViewModel() {
 

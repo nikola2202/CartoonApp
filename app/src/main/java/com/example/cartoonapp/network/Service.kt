@@ -1,7 +1,7 @@
 package com.example.cartoonapp.network
 
-import com.example.cartoonapp.GetCharactersPageResponse
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
+import com.example.cartoonapp.network.response.GetCharactersPageResponse
+import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,19 +1,10 @@
 package com.example.cartoonapp
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.example.cartoonapp.epoxy.CharacterDetailsEpoxyController
-import com.example.cartoonapp.network.data.GetCharacterByIdResponse
-import com.squareup.picasso.Picasso
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
