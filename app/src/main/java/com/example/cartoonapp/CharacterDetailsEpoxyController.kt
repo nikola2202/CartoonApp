@@ -19,7 +19,7 @@ class CharacterDetailsEpoxyController: EpoxyController() {
             }
         }
 
-    var characterResponse: GetCharacterByIdResponse? = null
+    var character: com.example.cartoonapp.domain.models.Character? = null
         set(value) {
             field = value
             if (field != null) {
@@ -35,32 +35,32 @@ class CharacterDetailsEpoxyController: EpoxyController() {
             return
         }
 
-        if (characterResponse==null) {
+        if (character==null) {
 
             return
         }
 
         //Header Model
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
-        ).id("image").addTo(this)
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
+        ).id("header").addTo(this)
 
         //add image model
         ImageEpoxyModel(
-            imageUrl = characterResponse!!.image
+            imageUrl = character!!.image
         ).id("image").addTo(this)
 
         //add the data points model(s)
         DataPointEpoxyModel(
             title = "Origin",
-            description = characterResponse!!.origin.name
+            description = character!!.origin.name
         ).id("data_point_1").addTo(this)
 
         DataPointEpoxyModel(
             title = "Species",
-            description = characterResponse!!.species
+            description = character!!.species
         ).id("data_point_2").addTo(this)
 
     }

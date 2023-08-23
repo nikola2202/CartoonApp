@@ -11,8 +11,8 @@ class SharedViewModel: ViewModel() {
 
     private val repository = SharedRepository()
 
-    private val _characterIdLiveData = MutableLiveData<GetCharacterByIdResponse?>()
-    val characterIdLiveData: LiveData<GetCharacterByIdResponse?> = _characterIdLiveData
+    private val _characterIdLiveData = MutableLiveData<com.example.cartoonapp.domain.models.Character?>()
+    val characterIdLiveData: LiveData<com.example.cartoonapp.domain.models.Character?> = _characterIdLiveData
 
     fun refreshCharacter(characterId:Int) {
         viewModelScope.launch {
