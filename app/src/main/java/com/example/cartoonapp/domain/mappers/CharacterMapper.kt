@@ -2,13 +2,19 @@ package com.example.cartoonapp.domain.mappers
 
 import com.example.cartoonapp.domain.models.Character
 import com.example.cartoonapp.network.response.GetCharacterByIdResponse
+import com.example.cartoonapp.network.response.GetEpisodeByIdResponse
 
 object CharacterMapper {
 
-    fun buildFrom(response: GetCharacterByIdResponse): Character {
+    fun buildFrom(
+        response: GetCharacterByIdResponse,
+        episodes: List<GetEpisodeByIdResponse>
+    ): Character {
 
         return Character(
-            episodeList = emptyList(), //todo
+            episodeList = episodes.map {
+                 EpisodeMapper.buildFrom(it)
+            },
             gender = response.gender,
             id = response.id,
             image = response.image,
