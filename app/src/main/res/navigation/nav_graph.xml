@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/characterListFragment2">
+
+    <fragment
+        android:id="@+id/characterListFragment2"
+        android:name="com.example.cartoonapp.CharacterListFragment"
+        android:label="fragment_character_list"
+        tools:layout="@layout/activity_character_list" >
+        <action
+            android:id="@+id/action_characterListFragment2_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.example.cartoonapp.CharacterDetailsFragment"
+        android:label="fragment_character_details"
+        tools:layout="@layout/activity_main" />
+</navigation>

@@ -10,12 +10,12 @@ kapt {
 
 android {
     namespace 'com.example.cartoonapp'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.cartoonapp"
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -41,6 +41,16 @@ android {
 }
 
 dependencies {
+
+    // Networking
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    debugImplementation "com.github.chuckerteam.chucker:library:4.0.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:4.0.0"
+
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.0'
+
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
