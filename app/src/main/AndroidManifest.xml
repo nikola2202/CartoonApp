@@ -23,7 +23,7 @@
             </intent-filter>-->
         </activity>
 
-        <activity android:name=".NawGraphActivity"
+        <activity android:name=".NavGraphActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
