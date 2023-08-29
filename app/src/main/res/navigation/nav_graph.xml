@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/characterListFragment2"
         android:name="com.example.cartoonapp.CharacterListFragment"
-        android:label="fragment_character_list"
-        tools:layout="@layout/activity_character_list" >
+        android:label="Rick and Morty characters"
+        tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment2_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment" />
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.example.cartoonapp.CharacterDetailsFragment"
-        android:label="fragment_character_details"
-        tools:layout="@layout/activity_character_details" >
+        android:label="Character details"
+        tools:layout="@layout/fragment_character_details" >
         <argument
             android:name="characterId"
             app:argType="integer"
