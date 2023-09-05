@@ -12,16 +12,37 @@
         tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment2_to_characterDetailsFragment"
-            app:destination="@id/characterDetailsFragment" />
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
+
     <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.example.cartoonapp.CharacterDetailsFragment"
         android:label="Character details"
         tools:layout="@layout/fragment_character_details" >
+
+        <deepLink app:uri="https://cartoonapp.com/character/{characterId}"/>
+
         <argument
             android:name="characterId"
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="com.example.cartoonapp.EpisodeListFragment"
+        android:label="Rick and Morty episodes"
+        tools:layout="@layout/fragment_episode_list" >
+<!--
+        <action
+            android:id="@+id/action_characterListFragment2_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"/>
+-->
+    </fragment>
+
 </navigation>
