@@ -3,6 +3,7 @@ package com.example.cartoonapp.network
 import com.example.cartoonapp.network.response.GetCharactersPageResponse
 import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 import com.example.cartoonapp.network.response.GetEpisodeByIdResponse
+import com.example.cartoonapp.network.response.GetEpisodePageResponse
 import retrofit2.Response
 
 class ApiClient(
@@ -23,6 +24,10 @@ class ApiClient(
 
     suspend fun getEpisodeRange(episodeRange: String): SimpleResponse<List<GetEpisodeByIdResponse>> {
         return safeApiCall { cartoonAppService.getEpisodeRange(episodeRange) }
+    }
+
+    suspend fun getEpisodePage(pageIndex: Int): SimpleResponse<GetEpisodePageResponse> {
+        return safeApiCall { cartoonAppService.getEpisodePage(pageIndex) }
     }
 
     private inline fun<T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {

@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/episodeListFragment"
-        android:name="com.example.cartoonapp.EpisodeListFragment"
+        android:name="com.example.cartoonapp.episodes.EpisodeListFragment"
         android:label="Rick and Morty episodes"
         tools:layout="@layout/fragment_episode_list" >
 <!--

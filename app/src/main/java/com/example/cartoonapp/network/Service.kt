@@ -3,6 +3,7 @@ package com.example.cartoonapp.network
 import com.example.cartoonapp.network.response.GetCharactersPageResponse
 import com.example.cartoonapp.network.response.GetCharacterByIdResponse
 import com.example.cartoonapp.network.response.GetEpisodeByIdResponse
+import com.example.cartoonapp.network.response.GetEpisodePageResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -29,5 +30,10 @@ interface Service {
     suspend fun getEpisodeRange(
         @Path("episode-range") episodeRange: String
     ): Response<List<GetEpisodeByIdResponse>>
+
+    @GET("episode/")
+    suspend fun getEpisodePage(
+        @Query("page") pageIndex: Int
+    ): Response<GetEpisodePageResponse>
 
 }

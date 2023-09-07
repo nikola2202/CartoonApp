@@ -1,8 +1,9 @@
-package com.example.cartoonapp
+package com.example.cartoonapp.episodes
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.cartoonapp.R
 import com.example.cartoonapp.databinding.FragmentEpisodeListBinding
 
 class EpisodeListFragment: Fragment(R.layout.fragment_episode_list) {
