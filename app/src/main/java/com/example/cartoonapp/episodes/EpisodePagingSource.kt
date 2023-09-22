@@ -2,11 +2,12 @@ package com.example.cartoonapp.episodes
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.cartoonapp.domain.mappers.EpisodeMapper
 import com.example.cartoonapp.domain.models.Episode
+import com.example.cartoonapp.network.NetworkLayer
 import kotlinx.coroutines.CoroutineScope
 
 class EpisodePagingSource(
-    private val coroutineScope: CoroutineScope,
     private val repository: EpisodeRepository
 ): PagingSource<Int,Episode>() {
 
@@ -14,12 +15,16 @@ class EpisodePagingSource(
         val pageNumber = params.key ?: 1
         val previousKey = if (pageNumber == 1) null else pageNumber - 1
 
-        //todo network call with key
+        val pageRequest = NetworkLayer.apiClient.getEpisodePage(pageNumber)
+
+        pageRequest.exception?.let {
+            return LoadResult.Error(it)
+        }
 
         return LoadResult.Page(
-            data = emptyList(),
+            data = pageRequest.body.results.map { EpisodeMapper.buildFrom(it) },
             prevKey = null,
-            nextKey = pageNumber + 1 // todo clean this up with network info
+            nextKey = getPageIndexFromNext((pageRequest.body.info.next))
         )
     }
 
@@ -37,4 +42,9 @@ class EpisodePagingSource(
         }
 
     }
+
+    private fun getPageIndexFromNext(next: String?):Int? {
+        return next?.split("?page=")?.get(1)?.toInt()
+    }
+
 }
